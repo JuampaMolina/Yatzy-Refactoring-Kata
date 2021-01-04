@@ -4,14 +4,14 @@ from yatzy import Yatzy
 # available from http://pytest.org/
 
 
-def test_chance_scores_sum_of_all_dice():
+def test_chance():
     expected = 15
     actual = Yatzy.chance(2, 3, 4, 5, 1)
     assert expected == actual
     assert 16 == Yatzy.chance(3, 3, 4, 5, 1)
 
 
-def test_yatzy_scores_50():
+def test_yatzy():
     expected = 50
     actual = Yatzy.yatzy([4, 4, 4, 4, 4])
     assert expected == actual
@@ -54,16 +54,16 @@ def test_sixes():
     assert 18 == Yatzy.sixes(6, 5, 6, 6, 5)
 
 
-def test_one_pair():
-    assert 6 == Yatzy.score_pair(3, 4, 3, 5, 6)
-    assert 10 == Yatzy.score_pair(5, 3, 3, 3, 5)
-    assert 12 == Yatzy.score_pair(5, 3, 6, 6, 5)
+def test_pair():
+    assert 6 == Yatzy.pair(3, 4, 3, 5, 6)
+    assert 10 == Yatzy.pair(5, 3, 3, 3, 5)
+    assert 12 == Yatzy.pair(5, 3, 6, 6, 5)
 
 
-def test_two_Pair():
-    assert 16 == Yatzy.two_pair(3, 3, 5, 4, 5)
-    assert 18 == Yatzy.two_pair(3, 3, 6, 6, 6)
-    assert 0 == Yatzy.two_pair(3, 3, 6, 5, 4)
+def test_two_pairs():
+    assert 16 == Yatzy.two_pairs(3, 3, 5, 4, 5)
+    assert 18 == Yatzy.two_pairs(3, 3, 6, 6, 6)
+    assert 0 == Yatzy.two_pairs(3, 3, 6, 5, 4)
 
 
 def test_three_of_a_kind():
@@ -79,18 +79,18 @@ def test_four_of_a_knd():
     assert 0 == Yatzy.four_of_a_kind(3, 3, 3, 2, 1)
 
 
-def test_smallStraight():
-    assert 15 == Yatzy.smallStraight(1, 2, 3, 4, 5)
-    assert 15 == Yatzy.smallStraight(2, 3, 4, 5, 1)
-    assert 0 == Yatzy.smallStraight(1, 2, 2, 4, 5)
+def test_small_straight():
+    assert 15 == Yatzy.small_straight(1, 2, 3, 4, 5)
+    assert 15 == Yatzy.small_straight(2, 3, 4, 5, 1)
+    assert 0 == Yatzy.small_straight(1, 2, 2, 4, 5)
 
 
-def test_largeStraight():
-    assert 20 == Yatzy.largeStraight(6, 2, 3, 4, 5)
-    assert 20 == Yatzy.largeStraight(2, 3, 4, 5, 6)
-    assert 0 == Yatzy.largeStraight(1, 2, 2, 4, 5)
+def test_large_straight():
+    assert 20 == Yatzy.large_straight(6, 2, 3, 4, 5)
+    assert 20 == Yatzy.large_straight(2, 3, 4, 5, 6)
+    assert 0 == Yatzy.large_straight(1, 2, 2, 4, 5)
 
 
-def test_fullHouse():
-    assert 18 == Yatzy.fullHouse(6, 2, 2, 2, 6)
-    assert 0 == Yatzy.fullHouse(2, 3, 4, 5, 6)
+def test_full_house():
+    assert 18 == Yatzy.full_house(6, 2, 2, 2, 6)
+    assert 0 == Yatzy.full_house(2, 3, 4, 5, 6)

@@ -66,7 +66,7 @@ class Yatzy:
         return sum
 
     @staticmethod
-    def score_pair(d1,  d2,  d3,  d4,  d5):
+    def pair(d1,  d2,  d3,  d4,  d5):
         counts = [0]*6
         counts[d1-1] += 1
         counts[d2-1] += 1
@@ -80,7 +80,7 @@ class Yatzy:
         return 0
 
     @staticmethod
-    def two_pair(d1,  d2,  d3,  d4,  d5):
+    def two_pairs(d1,  d2,  d3,  d4,  d5):
         counts = [0]*6
         counts[d1-1] += 1
         counts[d2-1] += 1
@@ -100,19 +100,6 @@ class Yatzy:
             return 0
 
     @staticmethod
-    def four_of_a_kind(_1,  _2,  d3,  d4,  d5):
-        tallies = [0]*6
-        tallies[_1-1] += 1
-        tallies[_2-1] += 1
-        tallies[d3-1] += 1
-        tallies[d4-1] += 1
-        tallies[d5-1] += 1
-        for i in range(6):
-            if (tallies[i] >= 4):
-                return (i+1) * 4
-        return 0
-
-    @staticmethod
     def three_of_a_kind(d1,  d2,  d3,  d4,  d5):
         t = [0]*6
         t[d1-1] += 1
@@ -126,7 +113,20 @@ class Yatzy:
         return 0
 
     @staticmethod
-    def smallStraight(d1,  d2,  d3,  d4,  d5):
+    def four_of_a_kind(_1,  _2,  d3,  d4,  d5):
+        tallies = [0]*6
+        tallies[_1-1] += 1
+        tallies[_2-1] += 1
+        tallies[d3-1] += 1
+        tallies[d4-1] += 1
+        tallies[d5-1] += 1
+        for i in range(6):
+            if (tallies[i] >= 4):
+                return (i+1) * 4
+        return 0
+
+    @staticmethod
+    def small_straight(d1,  d2,  d3,  d4,  d5):
         tallies = [0]*6
         tallies[d1-1] += 1
         tallies[d2-1] += 1
@@ -142,7 +142,7 @@ class Yatzy:
         return 0
 
     @staticmethod
-    def largeStraight(d1,  d2,  d3,  d4,  d5):
+    def large_straight(d1,  d2,  d3,  d4,  d5):
         tallies = [0]*6
         tallies[d1-1] += 1
         tallies[d2-1] += 1
@@ -158,7 +158,7 @@ class Yatzy:
         return 0
 
     @staticmethod
-    def fullHouse(d1,  d2,  d3,  d4,  d5):
+    def full_house(d1,  d2,  d3,  d4,  d5):
         tallies = []
         _2 = False
         i = 0
