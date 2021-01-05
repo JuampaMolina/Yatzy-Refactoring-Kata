@@ -66,18 +66,14 @@ class Yatzy:
         return sum
 
     @staticmethod
-    def pair(d1,  d2,  d3,  d4,  d5):
-        counts = [0]*6
-        counts[d1-1] += 1
-        counts[d2-1] += 1
-        counts[d3-1] += 1
-        counts[d4-1] += 1
-        counts[d5-1] += 1
-        at = 0
-        for at in range(6):
-            if (counts[6-at-1] == 2):
-                return (6-at)*2
-        return 0
+    def pair(*dices):
+        dicesList = (dices)
+        score = 0
+        for dice in dicesList:
+            if dicesList.count(dice) == 2:
+                if (dice * 2) > score:
+                    score = dice * 2
+        return score
 
     @staticmethod
     def two_pairs(d1,  d2,  d3,  d4,  d5):
