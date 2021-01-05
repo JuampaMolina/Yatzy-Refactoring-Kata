@@ -5,18 +5,17 @@ from yatzy import Yatzy
 
 
 def test_chance():
-    expected = 15
-    actual = Yatzy.chance(2, 3, 4, 5, 1)
-    assert expected == actual
     assert 16 == Yatzy.chance(3, 3, 4, 5, 1)
+    assert 10 == Yatzy.chance(2, 3, 4, 1)
+    assert 19 == Yatzy.chance(6, 4, 3, 5, 1)
+    assert 0 == Yatzy.chance()
 
 
 def test_yatzy():
-    expected = 50
-    actual = Yatzy.yatzy([4, 4, 4, 4, 4])
-    assert expected == actual
-    assert 50 == Yatzy.yatzy([6, 6, 6, 6, 6])
-    assert 0 == Yatzy.yatzy([6, 6, 6, 6, 3])
+    assert 50 == Yatzy.yatzy(6, 6, 6, 6, 6)
+    assert 0 == Yatzy.yatzy(6, 6, 6, 3, 6)
+    assert 50 == Yatzy.yatzy(2, 2, 2, 2, 2)
+    assert 50 == Yatzy.yatzy(1, 1, 1, 1)
 
 
 def test_ones():
