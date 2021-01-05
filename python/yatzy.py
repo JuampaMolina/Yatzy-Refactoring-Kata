@@ -15,7 +15,7 @@ class Yatzy:
                 return 0
         return 50
 
-    @ staticmethod
+    @staticmethod
     def ones(*dices):
         sum = 0
         for dice in dices:
@@ -23,7 +23,7 @@ class Yatzy:
                 sum += dice
         return sum
 
-    @ staticmethod
+    @staticmethod
     def twos(*dices):
         sum = 0
         for dice in dices:
@@ -31,7 +31,7 @@ class Yatzy:
                 sum += dice
         return sum
 
-    @ staticmethod
+    @staticmethod
     def threes(*dices):
         sum = 0
         for dice in dices:
@@ -39,7 +39,7 @@ class Yatzy:
                 sum += dice
         return sum
 
-    @ staticmethod
+    @staticmethod
     def fours(*dices):
         sum = 0
         for dice in dices:
@@ -47,7 +47,7 @@ class Yatzy:
                 sum += dice
         return sum
 
-    @ staticmethod
+    @staticmethod
     def fives(*dices):
         sum = 0
         for dice in dices:
@@ -55,7 +55,7 @@ class Yatzy:
                 sum += dice
         return sum
 
-    @ staticmethod
+    @staticmethod
     def sixes(*dices):
         sum = 0
         for dice in dices:
@@ -63,73 +63,44 @@ class Yatzy:
                 sum += dice
         return sum
 
-    @ staticmethod
+    @staticmethod
     def pair(*dices):
-        dicesList = (dices)
         score = 0
-        for dice in dicesList:
-            if dicesList.count(dice) == 2:
-                """and"""
-                if (dice * 2) > score:
-                    score = dice * 2
+        for dice in dices:
+            if dices.count(dice) >= 2 and (dice * 2) > score:
+                score = dice * 2
         return score
 
-    @ staticmethod
-    def two_pairs(d1,  d2,  d3,  d4,  d5):
-        counts = [0]*6
-        counts[d1-1] += 1
-        counts[d2-1] += 1
-        counts[d3-1] += 1
-        counts[d4-1] += 1
-        counts[d5-1] += 1
-        n = 0
+    @staticmethod
+    def two_pairs(*dices):
         score = 0
-        for i in range(6):
-            if (counts[6-i-1] >= 2):
-                n = n+1
-                score += (6-i)
-
-        if (n == 2):
-            return score * 2
+        havePair = []
+        for dice in dices:
+            if dices.count(dice) >= 2 and dice not in havePair:
+                score += dice * 2
+                havePair.append(dice)
+        if len(havePair) >= 2:
+            return score
         else:
             return 0
-    """def two_pairs(*dices):
-        dicesList = (dices)
+
+    @staticmethod
+    def three_of_a_kind(*dices):
         score = 0
-        firstPair = 0
-        for dice in dicesList:
-            if dicesList.count(dice) == 2:
-                firstPair += dice
+        for dice in dices:
+            if dices.count(dice) >= 3 and (dice * 3) > score:
+                score = dice * 3
+        return score
 
-        return score"""
+    @staticmethod
+    def four_of_a_kind(*dices):
+        score = 0
+        for dice in dices:
+            if dices.count(dice) >= 4 and (dice * 4) > score:
+                score = dice * 4
+        return score
 
-    @ staticmethod
-    def three_of_a_kind(d1,  d2,  d3,  d4,  d5):
-        t = [0]*6
-        t[d1-1] += 1
-        t[d2-1] += 1
-        t[d3-1] += 1
-        t[d4-1] += 1
-        t[d5-1] += 1
-        for i in range(6):
-            if (t[i] >= 3):
-                return (i+1) * 3
-        return 0
-
-    @ staticmethod
-    def four_of_a_kind(_1,  _2,  d3,  d4,  d5):
-        tallies = [0]*6
-        tallies[_1-1] += 1
-        tallies[_2-1] += 1
-        tallies[d3-1] += 1
-        tallies[d4-1] += 1
-        tallies[d5-1] += 1
-        for i in range(6):
-            if (tallies[i] >= 4):
-                return (i+1) * 4
-        return 0
-
-    @ staticmethod
+    @staticmethod
     def small_straight(d1,  d2,  d3,  d4,  d5):
         tallies = [0]*6
         tallies[d1-1] += 1
@@ -145,23 +116,20 @@ class Yatzy:
             return 15
         return 0
 
-    @ staticmethod
-    def large_straight(d1,  d2,  d3,  d4,  d5):
-        tallies = [0]*6
-        tallies[d1-1] += 1
-        tallies[d2-1] += 1
-        tallies[d3-1] += 1
-        tallies[d4-1] += 1
-        tallies[d5-1] += 1
-        if (tallies[1] == 1 and
-            tallies[2] == 1 and
-            tallies[3] == 1 and
-            tallies[4] == 1
-                and tallies[5] == 1):
-            return 20
-        return 0
+    @staticmethod
+    def large_straight(*dices):
+        orderedList = sorted(list(dices))
+        score = 0
+        smallest = 2
+        for dice in orderedList:  # while
+            if dice == smallest and orderedList.count(dice) == 1:
+                score += dice
+                smallest += 1
+            else:
+                return 0
+        return score
 
-    @ staticmethod
+    @staticmethod
     def full_house(d1,  d2,  d3,  d4,  d5):
         tallies = []
         _2 = False
@@ -194,4 +162,4 @@ class Yatzy:
 
 
 if __name__ == "__main__":
-    assert 50 == Yatzy.yatzy()
+    assert 0 == Yatzy.large_straight(1, 2, 2, 4, 5)
